@@ -1,0 +1,7 @@
+default:
+  suites:
+    test:
+      paths:
+        - 'test/acceptance/Feature/Test'
+      contexts:
+        - AcceptanceTest\Context\Test\TestingStepsContext

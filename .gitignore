@@ -1,0 +1,20 @@
+# Env files
+*.env
+*.envrc
+
+# Vendor files
+/vendor
+/bin
+
+# IDE files
+*.idea
+
+# Test Files
+test/reports/*
+
+# Excluded files
+composer.phar
+*.phpunit.result.cache
+
+# Keep all .gitkeep files
+!*.gitkeep

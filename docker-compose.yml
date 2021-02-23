@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    build: 
+      context: ./
+      dockerfile: ./docker/web/Dockerfile
+    container_name: sandwicher-web
+    ports:
+      - '80:80'
+    volumes:
+      - './:/app'
+      - './docker/web/nginx/sandwicher.conf:/etc/nginx/conf.d/sandwicher.conf'
+    links:
+      - database
+    networks:
+      - sandwicher-network
+
+  database:
+    image: mysql:5.7
+    container_name: sandwicher-database
+    environment:
+      MYSQL_DATABASE: 'sandwicher'
+      MYSQL_USER: 'sandwicher'
+      MYSQL_PASSWORD: 'sandwicher'
+      MYSQL_ROOT_PASSWORD: 'sandwicher'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - sandwicher-network
+
+volumes:
+  mysql:
+
+networks:
+  sandwicher-network:
+      driver: bridge
