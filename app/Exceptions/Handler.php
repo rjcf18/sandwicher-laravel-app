@@ -1,6 +1,6 @@
 <?php
 
-namespace Sandwicher\Application\Exceptions;
+namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;

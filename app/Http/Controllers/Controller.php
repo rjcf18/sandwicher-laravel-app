@@ -1,6 +1,6 @@
 <?php
 
-namespace Sandwicher\Application\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

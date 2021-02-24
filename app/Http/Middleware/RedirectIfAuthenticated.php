@@ -1,8 +1,8 @@
 <?php
 
-namespace Sandwicher\Application\Http\Middleware;
+namespace App\Http\Middleware;
 
-use Sandwicher\Application\Providers\RouteServiceProvider;
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

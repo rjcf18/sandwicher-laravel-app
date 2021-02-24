@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Sandwicher\Application\Models\User as UserModel;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        UserModel::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
     }
 }

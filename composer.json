@@ -30,19 +30,21 @@
         "fruitcake/laravel-cors": "2.0",
         "guzzlehttp/guzzle": "7.2.0",
         "laravel/framework": "8.28.1",
-        "laravel/jetstream": "2.2.2",
-        "laravel/sanctum": "2.9.0",
-        "laravel/tinker": "2.6.0",
-        "livewire/livewire": "2.4.0"
+        "laravel/tinker": "2.6.0"
     },
     "require-dev": {
         "behat/behat": "3.8.1",
         "phpunit/phpunit": "9.5.0",
-        "laravel/sail": "1.4.0"
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "1.4.2",
+        "nunomaduro/collision": "5.3.0",
+        "laravel/sail": "1.4.0",
+        "laravel/ui": "3.2.0"
     },
     "autoload": {
         "psr-4": {
-            "Sandwicher\\Application\\": "app/",
+            "App\\": "app/",
             "Sandwicher\\Database\\Factories\\": "database/factories/",
             "Sandwicher\\Database\\Seeders\\": "database/seeders/"
         }

@@ -169,13 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        Sandwicher\Application\Providers\AppServiceProvider::class,
-        Sandwicher\Application\Providers\AuthServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        Sandwicher\Application\Providers\EventServiceProvider::class,
-        Sandwicher\Application\Providers\RouteServiceProvider::class,
-        Sandwicher\Application\Providers\FortifyServiceProvider::class,
-        Sandwicher\Application\Providers\JetstreamServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 
