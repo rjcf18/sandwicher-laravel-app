@@ -1,7 +1,7 @@
 {
     "name": "sandwicher/laravel-app",
     "description": "A project to test some development concepts - Laravel App",
-    "version": "1.0",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
@@ -13,22 +13,39 @@
         "bin-dir": "bin/",
         "platform": {
             "php": "8.0.0"
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
         }
     },
     "require": {
         "php": "8.0.0",
         "sandwicher/domain": "1.0",
+        "fideloper/proxy": "4.4.1",
+        "fruitcake/laravel-cors": "2.0",
+        "guzzlehttp/guzzle": "7.2.0",
         "laravel/framework": "8.28.1",
-        "laravel/laravel": "8.5.10"
-    },
-    "autoload": {
-        "psr-4": {
-            "Sandwicher\\Application\\": "src/"
-        }
+        "laravel/jetstream": "2.2.2",
+        "laravel/sanctum": "2.9.0",
+        "laravel/tinker": "2.6.0",
+        "livewire/livewire": "2.4.0"
     },
     "require-dev": {
         "behat/behat": "3.8.1",
-        "phpunit/phpunit": "9.5.0"
+        "phpunit/phpunit": "9.5.0",
+        "laravel/sail": "1.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sandwicher\\Application\\": "app/",
+            "Sandwicher\\Database\\Factories\\": "database/factories/",
+            "Sandwicher\\Database\\Seeders\\": "database/seeders/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -37,11 +54,23 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
         "test": [
             "@unitTest",
             "@acceptanceTest"
         ],
-        "unitTest": "bin/phpunit --configuration config/unit-test.xml --log-junit test/reports/unitReport.xml",
-        "acceptanceTest": "bin/behat --config config/acceptance-test.yml -f pretty -o std -f junit --out test/reports"
-    }
+        "unitTest": "bin/phpunit --configuration config/tests/unit-test.xml --log-junit test/reports/unitReport.xml",
+        "acceptanceTest": "bin/behat --config config/tests/acceptance-test.yml -f pretty -o std -f junit --out test/reports"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
