@@ -59,7 +59,7 @@
                                     <form action="{{ route('meals.store') }}" method="POST">
                                         @csrf
 
-                                        <button type="submit" class="dropdown-item">Create</button>
+                                        <button type="submit" class="dropdown-item">Open Registration</button>
                                     </form>
                                     <form action="{{ route('meals.closeRegistration') }}" method="POST">
                                         @csrf
