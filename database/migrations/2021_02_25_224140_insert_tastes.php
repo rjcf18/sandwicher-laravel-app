@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class InsertTastes extends Migration
 {
@@ -14,12 +12,14 @@ class InsertTastes extends Migration
      */
     public function up()
     {
+        $now = new DateTimeImmutable();
+
         DB::table('tastes')->insert(
             [
-                ['name' => 'Chicken Fajita'],
-                ['name' => 'Paprika'],
-                ['name' => 'Monterey Cheddar'],
-                ['name' => 'Honey Mustard & Chicken'],
+                ['name' => 'Chicken Fajita', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Paprika', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Monterey Cheddar', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Honey Mustard & Chicken', 'created_at' => $now, 'updated_at' => $now],
             ]
         );
     }

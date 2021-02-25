@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class InsertExtras extends Migration
 {
@@ -14,11 +12,13 @@ class InsertExtras extends Migration
      */
     public function up()
     {
+        $now = new DateTimeImmutable();
+
         DB::table('extras')->insert(
             [
-                ['name' => 'Bacon'],
-                ['name' => 'Meat'],
-                ['name' => 'Cheese'],
+                ['name' => 'Bacon', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Meat', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Cheese', 'created_at' => $now, 'updated_at' => $now],
             ]
         );
     }

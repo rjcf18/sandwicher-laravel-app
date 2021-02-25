@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class InsertBreadTypes extends Migration
 {
@@ -13,14 +12,16 @@ class InsertBreadTypes extends Migration
      */
     public function up()
     {
+        $now = new DateTimeImmutable();
+
         DB::table('bread_types')->insert(
             [
-                ['name' => '9-Grain Wheat'],
-                ['name' => 'Flatbread'],
-                ['name' => 'Multi-grain Flatbread'],
-                ['name' => 'Italian'],
-                ['name' => 'Italian Herbs & Cheese'],
-                ['name' => 'Gluten-Free Bread'],
+                ['name' => '9-Grain Wheat', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Flatbread', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Multi-grain Flatbread', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Italian', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Italian Herbs & Cheese', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => 'Gluten-Free Bread', 'created_at' => $now, 'updated_at' => $now],
             ]
         );
     }

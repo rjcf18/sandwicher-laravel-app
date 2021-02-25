@@ -12,10 +12,12 @@ class InsertBreadSizes extends Migration
      */
     public function up()
     {
+        $now = new DateTimeImmutable();
+
         DB::table('bread_sizes')->insert(
             [
-                ['name' => '15cm'],
-                ['name' => '30cm'],
+                ['name' => '15cm', 'created_at' => $now, 'updated_at' => $now],
+                ['name' => '30cm', 'created_at' => $now, 'updated_at' => $now],
             ]
         );
     }
