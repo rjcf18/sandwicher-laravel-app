@@ -17,7 +17,7 @@ class CreateConsumersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('accessCode')->unique();
+            $table->string('access_code')->unique();
             $table->timestamps();
         });
     }
