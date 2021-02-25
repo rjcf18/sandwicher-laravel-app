@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b87392fbd11bae6a942e8fcba36908c7",
+    "content-hash": "99236fb7df7a135fc095f056269537d5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2362,16 +2362,16 @@
         },
         {
             "name": "sandwicher/domain",
-            "version": "1.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rjcf18/sandwicher-domain.git",
-                "reference": "1e57536ddc71fd2a229dcd34512fddb8fd5fc9f5"
+                "reference": "e1ec721ec4a3d75037472c7dfbb056a40bf4eef7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rjcf18/sandwicher-domain/zipball/1e57536ddc71fd2a229dcd34512fddb8fd5fc9f5",
-                "reference": "1e57536ddc71fd2a229dcd34512fddb8fd5fc9f5",
+                "url": "https://api.github.com/repos/rjcf18/sandwicher-domain/zipball/e1ec721ec4a3d75037472c7dfbb056a40bf4eef7",
+                "reference": "e1ec721ec4a3d75037472c7dfbb056a40bf4eef7",
                 "shasum": ""
             },
             "require": {
@@ -2399,9 +2399,9 @@
             "description": "A project to test some development concepts - Domain",
             "support": {
                 "issues": "https://github.com/rjcf18/sandwicher-domain/issues",
-                "source": "https://github.com/rjcf18/sandwicher-domain/tree/1.0"
+                "source": "https://github.com/rjcf18/sandwicher-domain/tree/1.0.1"
             },
-            "time": "2021-02-23T03:39:00+00:00"
+            "time": "2021-02-25T01:12:45+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
