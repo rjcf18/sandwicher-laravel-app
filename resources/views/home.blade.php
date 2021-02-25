@@ -23,7 +23,6 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Code</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Updated At</th>
@@ -33,7 +32,6 @@
                                 @foreach ($meals as $meal)
                                     <tr>
                                         <th scope="row">{{ $meal->id }}</th>
-                                        <td>{{ $meal->registrationCode }}</td>
                                         <td>{{ $meal->status ? 'Open' : 'Closed' }}</td>
                                         <td>{{ $meal->created_at }}</td>
                                         <td>{{ $meal->updated_at }}</td>

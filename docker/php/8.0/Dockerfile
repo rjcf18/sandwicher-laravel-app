@@ -6,6 +6,8 @@ WORKDIR /var/www/html
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
+ENV XDEBUG_CONFIG='idekey=PHPSTORM'
+ENV PHP_IDE_CONFIG='serverName=sandwicher'
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -25,7 +27,12 @@ RUN apt-get update \
        php8.0-xml php8.0-zip php8.0-bcmath php8.0-soap \
        php8.0-intl php8.0-readline \
        php8.0-msgpack php8.0-igbinary php8.0-ldap \
-       php8.0-redis \
+       php8.0-redis php-xdebug \
+    && echo "[XDebug]" > /etc/php/8.0/cli/php.ini \
+    && echo "zend_extension="$(find /usr/lib/php/20200930/ -name xdebug.so)" > /etc/php/8.0/cli/php.ini" \
+    && echo "xdebug.mode = debug" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.start_with_request = yes" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.client_host = host.docker.internal" >> /etc/php/8.0/cli/php.ini \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && curl -sL https://deb.nodesource.com/setup_15.x | bash - \
     && apt-get install -y nodejs \
@@ -46,7 +53,6 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 COPY start-container /usr/local/bin/start-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
-COPY xdebug-local.ini /etc/php/8.0/mods-available/xdebug-local.ini
 
 RUN phpenmod -s ALL xdebug-local
 

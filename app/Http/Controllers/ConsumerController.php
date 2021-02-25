@@ -31,6 +31,11 @@ class ConsumerController extends Controller
             'email' => 'required|email'
         ]);
 
+        if (Consumer::consumerWithEmailExists($request->get('email'))) {
+            return redirect()->route('consumers.index')
+                ->with('message','Consumer with the specified email already exists.');
+        }
+
         $consumer = new Consumer($request->all());
         $consumer->setAttribute('access_code', md5($request->get('email')));
         $consumer->save();

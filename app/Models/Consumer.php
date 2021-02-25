@@ -14,4 +14,9 @@ class Consumer extends Model
         'email',
         'access_code'
     ];
+
+    public static function consumerWithEmailExists(string $email): bool
+    {
+        return (bool) static::query()->where('email', '=', $email)->exists();
+    }
 }

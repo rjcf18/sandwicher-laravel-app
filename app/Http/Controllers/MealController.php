@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\Meal;
+use DateTimeImmutable;
+use Illuminate\Support\Str;
 
 class MealController extends Controller
 {
@@ -12,81 +13,55 @@ class MealController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        //
+        return view('meals.index', [
+            'meals' => Meal::all(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        return view('meals.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store()
     {
-        //
+        if (Meal::openMealExists()) {
+            return redirect()->route('meals.index')
+                ->with('message','Meal registration not possible. A meal is already open.');
+        }
+
+        $meal = new Meal();
+        $meal->setAttribute('registration_code', md5(Str::random()));
+        $meal->save();
+
+        return redirect()->route('meals.index')
+            ->with('message','Meal registration opened successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return Response
-     */
-    public function show($id)
+    public function show(Meal $meal)
     {
-        //
+        return view('meals.show',compact('meal'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return Response
-     */
-    public function edit($id)
+    public function destroy(Meal $meal)
     {
-        //
+        $meal->delete();
+
+        return redirect()->route('meals.index')
+            ->with('message','Meal deleted successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     *
-     * @return Response
-     */
-    public function update($id)
+    public function closeRegistration()
     {
-        //
-    }
+        $meal = Meal::getOpenMeal();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        $meal->setAttribute('eaten_at', new DateTimeImmutable());
+        $meal->setAttribute('status', 0);
+        $meal->save();
+
+        return redirect()->route('meals.index')
+            ->with('message','Meal registration closed successfully.');
     }
 }

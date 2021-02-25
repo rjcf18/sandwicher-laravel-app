@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Meal extends Model
 {
     use HasFactory;
+
+    public function isOpen(): bool
+    {
+        return (bool) $this->getAttribute('status');
+    }
+
+    public static function openMealExists(): bool
+    {
+        return (bool) static::query()->where('status', '=', 1)->exists();
+    }
+
+    /**
+     * @return Meal|Model
+     */
+    public static function getOpenMeal(): ?Meal
+    {
+        return static::query()->where('status', '=', 1)->first();
+    }
 }
