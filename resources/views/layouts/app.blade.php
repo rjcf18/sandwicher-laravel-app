@@ -38,37 +38,39 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li class="nav-item dropdown">
-                                <a id="consumersDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Consumers
-                                </a>
+                            @if (Auth::user()->getAttribute('is_admin'))
+                                <li class="nav-item dropdown">
+                                    <a id="consumersDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Consumers
+                                    </a>
 
-                                <div class="dropdown-menu" aria-labelledby="consumersDropdown">
-                                    <a class="dropdown-item" href="{{ URL::to('admin/consumers') }}">List</a>
-                                    <a class="dropdown-item" href="{{ URL::to('admin/consumers/create') }}">Create</a>
-                                </div>
-                            </li>
+                                    <div class="dropdown-menu" aria-labelledby="consumersDropdown">
+                                        <a class="dropdown-item" href="{{ URL::to('admin/consumers') }}">List</a>
+                                        <a class="dropdown-item" href="{{ URL::to('admin/consumers/create') }}">Create</a>
+                                    </div>
+                                </li>
 
-                            <li class="nav-item dropdown">
-                                <a id="mealsDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Meals
-                                </a>
+                                <li class="nav-item dropdown">
+                                    <a id="mealsDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Meals
+                                    </a>
 
-                                <div class="dropdown-menu" aria-labelledby="mealsDropdown">
-                                    <a class="dropdown-item" href="{{ URL::to('admin/meals') }}">List</a>
-                                    <form action="{{ route('meals.store') }}" method="POST">
-                                        @csrf
+                                    <div class="dropdown-menu" aria-labelledby="mealsDropdown">
+                                        <a class="dropdown-item" href="{{ URL::to('admin/meals') }}">List</a>
+                                        <form action="{{ route('meals.store') }}" method="POST">
+                                            @csrf
 
-                                        <button type="submit" class="dropdown-item">Open Registration</button>
-                                    </form>
-                                    <form action="{{ route('meals.closeRegistration') }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
+                                            <button type="submit" class="dropdown-item">Open Registration</button>
+                                        </form>
+                                        <form action="{{ route('meals.closeRegistration') }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
 
-                                        <button type="submit" class="dropdown-item">Close Open Registration</button>
-                                    </form>
-                                </div>
-                            </li>
+                                            <button type="submit" class="dropdown-item">Close Open Registration</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
                         @endauth
                     </ul>
 

@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\VerifyConsumerAccess;
 use App\Http\Middleware\VerifyUserIsAdmin;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -78,6 +79,7 @@ class Kernel extends HttpKernel
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'auth.admin' => VerifyUserIsAdmin::class,
+        'auth.consumer' => VerifyConsumerAccess::class,
         'cache.headers' => SetCacheHeaders::class,
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,

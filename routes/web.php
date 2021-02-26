@@ -43,3 +43,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], func
         Route::patch('/close', [MealController::class, 'closeRegistration'])->name('meals.closeRegistration');
     });
 });
+
+Route::group(['prefix' => 'meals', 'middleware' => ['auth.consumer']], function () {
+    Route::get('/{registrationCode}', [MealController::class, 'dashboard'])->name('meals.registration.dashboard');
+});
+

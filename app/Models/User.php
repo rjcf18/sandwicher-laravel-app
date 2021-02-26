@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return (bool) static::query()->where('email', '=', $email)->exists();
     }
+
+    public static function accessTokenMatches(string $accessToken): bool
+    {
+        return (bool) static::query()->where('access_token', '=', $accessToken)->exists();
+    }
 }
