@@ -9,33 +9,31 @@
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <h1>Meals</h1>
+    <h1>Meal Consumers</h1>
 
-    @if (count($meals) > 0)
+    @if (count($consumers) > 0)
         <div class="table-responsive">
 
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Registration Code</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Eaten At</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
                     <td colspan="2">Actions</td>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($meals as $meal)
+                    @foreach ($consumers as $consumer)
                         <tr>
-                            <th scope="row">{{ $meal->id }}</th>
-                            <td>{{ $meal->registration_code }}</td>
-                            <td>{{ $meal->status ? 'Open' : 'Closed' }}</td>
-                            <td>{{ $meal->eaten_at ?? '-' }}</td>
+                            <th scope="row">{{ $consumer->id }}</th>
+                            <td>{{ $consumer->name }}</td>
+                            <td>{{ $consumer->email }}</td>
                             <td>
-                                <a class="btn btn-small btn-success" href="{{ URL::to('meals/' . $meal->id) }}">Details</a>
+                                <a class="btn btn-small btn-success" href="{{ URL::to('admin/consumers/' . $consumer->id) }}">Details</a>
                             </td>
                             <td>
-                                <form action="{{ route('meals.destroy', $meal->id)}}" method="POST">
+                                <form action="{{ route('consumers.destroy', $consumer->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-small btn-danger" type="submit">Delete</button>
@@ -47,7 +45,8 @@
             </table>
         </div>
     @else
-        <h5>{{ __('There are no meals yet') }}</h5>
+        <h5>{{ __('There are no consumers at the moment') }}</h5>
+
     @endif
 </div>
 @endsection

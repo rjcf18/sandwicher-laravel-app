@@ -7,21 +7,16 @@ use Illuminate\Http\Request;
 
 class ConsumerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('consumers.index', [
+        return view('admin.consumers.index', [
             'consumers' => Consumer::all(),
         ]);
     }
 
     public function create()
     {
-        return view('consumers.create');
+        return view('admin.consumers.create');
     }
 
     public function store(Request $request)
@@ -46,7 +41,7 @@ class ConsumerController extends Controller
 
     public function show(Consumer $consumer)
     {
-        return view('consumers.show',compact('consumer'));
+        return view('admin.consumers.show',compact('consumer'));
     }
 
     public function destroy(Consumer $consumer)

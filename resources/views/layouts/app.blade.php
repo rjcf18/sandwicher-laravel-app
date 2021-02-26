@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">
                     {{ config('app.name', 'Sandwicher') }}
                 </a>
             </div>
@@ -44,8 +44,8 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="consumersDropdown">
-                                    <a class="dropdown-item" href="{{ URL::to('consumers') }}">List</a>
-                                    <a class="dropdown-item" href="{{ URL::to('consumers/create') }}">Create</a>
+                                    <a class="dropdown-item" href="{{ URL::to('admin/consumers') }}">List</a>
+                                    <a class="dropdown-item" href="{{ URL::to('admin/consumers/create') }}">Create</a>
                                 </div>
                             </li>
 
@@ -55,7 +55,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="mealsDropdown">
-                                    <a class="dropdown-item" href="{{ URL::to('meals') }}">List</a>
+                                    <a class="dropdown-item" href="{{ URL::to('admin/meals') }}">List</a>
                                     <form action="{{ route('meals.store') }}" method="POST">
                                         @csrf
 

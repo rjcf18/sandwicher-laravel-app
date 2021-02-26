@@ -8,21 +8,16 @@ use Illuminate\Support\Str;
 
 class MealController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('meals.index', [
+        return view('admin.meals.index', [
             'meals' => Meal::all(),
         ]);
     }
 
     public function create()
     {
-        return view('meals.create');
+        return view('admin.meals.create');
     }
 
     public function store()
@@ -42,7 +37,7 @@ class MealController extends Controller
 
     public function show(Meal $meal)
     {
-        return view('meals.show',compact('meal'));
+        return view('admin.meals.show',compact('meal'));
     }
 
     public function destroy(Meal $meal)
