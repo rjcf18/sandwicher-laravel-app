@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Consumer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ConsumerController extends Controller
@@ -10,7 +10,7 @@ class ConsumerController extends Controller
     public function index()
     {
         return view('admin.consumers.index', [
-            'consumers' => Consumer::all(),
+            'consumers' => User::all()->where('is_admin', '=', 0),
         ]);
     }
 
@@ -26,25 +26,28 @@ class ConsumerController extends Controller
             'email' => 'required|email'
         ]);
 
-        if (Consumer::consumerWithEmailExists($request->get('email'))) {
+        $consumerWithEmailExists = User::userWithEmailExists($request->get('email'));
+
+        if ($consumerWithEmailExists) {
             return redirect()->route('consumers.index')
                 ->with('message','Consumer with the specified email already exists.');
         }
 
-        $consumer = new Consumer($request->all());
-        $consumer->setAttribute('access_code', md5($request->get('email')));
+        $consumer = new User($request->all());
+        $consumer->setAttribute('access_token', md5($request->get('email')));
+        $consumer->setAttribute('is_admin', 0);
         $consumer->save();
 
         return redirect()->route('consumers.index')
             ->with('message','Consumer created successfully.');
     }
 
-    public function show(Consumer $consumer)
+    public function show(User $consumer)
     {
         return view('admin.consumers.show',compact('consumer'));
     }
 
-    public function destroy(Consumer $consumer)
+    public function destroy(User $consumer)
     {
         $consumer->delete();
 

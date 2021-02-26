@@ -26,8 +26,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Access Code:</strong>
-                {{ $consumer->access_code }}
+                <strong>Access Token:</strong>
+                {{ $consumer->access_token }}
             </div>
         </div>
     </div>

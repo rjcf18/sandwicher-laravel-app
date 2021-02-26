@@ -13,7 +13,7 @@ class VerifyUserIsAdmin
         /** @var User $user */
         $user = $request->user();
 
-        if ($user->getAttribute('isAdmin')) {
+        if ($user->getAttribute('is_admin')) {
             return $next($request);
         }
 
