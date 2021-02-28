@@ -63,11 +63,14 @@
                 </div>
             </div>
         </div>
-
-        <a class="nav-link"
-           style="cursor: pointer"
-           data-toggle="modal"
-           data-target="#mealOrderRegisterModal">{{ __('Register Order') }}</a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-small btn-success"
+               data-toggle="modal"
+               data-target="#mealOrderRegisterModal">{{ __('Register Order') }}
+            </a>
+        </div>
     </div>
 </div>
 @endsection

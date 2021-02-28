@@ -11,16 +11,6 @@ class OrderController extends Controller
 {
     public function store(Request $request, string $registrationCode)
     {
-        $request->validate([
-            'bread_type_id' => 'required',
-            'bread_size_id' => 'required',
-            'taste_id' => 'required',
-            'extra_id' => 'required',
-            'vegetable_id' => 'required',
-            'sauce_id' => 'required',
-            'oven_baked' => 'required',
-        ]);
-
         /** @var User $user */
         $user = $request->user();
 

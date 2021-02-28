@@ -102,7 +102,7 @@
 
                         <div class="col-md-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="oven_baked" id="oven_baked" {{ old('oven_baked') ? 'checked' : '' }} required>
+                                <input class="form-check-input" type="checkbox" name="oven_baked" id="oven_baked" {{ old('oven_baked') ? 'checked' : '' }}>
                             </div>
                         </div>
                     </div>
