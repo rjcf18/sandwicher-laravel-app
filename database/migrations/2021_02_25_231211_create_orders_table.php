@@ -58,8 +58,8 @@ class CreateOrdersTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('vegetables_id');
-            $table->foreign('vegetables_id', 'orders_vegetables_foreign')
+            $table->unsignedBigInteger('vegetable_id');
+            $table->foreign('vegetable_id', 'orders_vegetables_foreign')
                 ->references('id')
                 ->on('vegetables')
                 ->onDelete('cascade')

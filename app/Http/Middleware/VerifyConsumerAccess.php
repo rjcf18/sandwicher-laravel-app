@@ -11,7 +11,7 @@ class VerifyConsumerAccess
 {
     public function handle(Request $request, Closure $next)
     {
-        $token = $request->query('token');
+        $token = $request->query('accessToken');
 
         if (empty($token)) {
             return redirect('/')

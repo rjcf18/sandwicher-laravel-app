@@ -3,6 +3,7 @@
 use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], func
 
 Route::group(['prefix' => 'meals', 'middleware' => ['auth.consumer']], function () {
     Route::get('/{registrationCode}', [MealController::class, 'dashboard'])->name('meals.registration.dashboard');
+    Route::post('/{registrationCode}', [OrderController::class, 'store'])->name('meals.register.order');
+    Route::patch('/{registrationCode}', [OrderController::class, 'update'])->name('meals.update.order');
 });
 

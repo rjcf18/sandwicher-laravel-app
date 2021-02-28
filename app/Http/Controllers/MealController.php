@@ -69,19 +69,21 @@ class MealController extends Controller
             ->with('message','Meal registration closed successfully.');
     }
 
-    public function dashboard(Request $request)
+    public function dashboard(Request $request, string $registrationCode)
     {
         /** @var User $user */
         $user = $request->user();
 
         return view('meals.registration.dashboard', [
-            'orders' => Order::all()->where('user_id', '=', $user->getAttribute('id')),
+            'orders' => Order::getAllByUserId($user->getAttribute('id')),
             'breadSizes' => BreadSize::all(),
             'breadTypes' => BreadType::all(),
             'extras' => Extra::all(),
             'sauces' => Sauce::all(),
             'tastes' => Taste::all(),
             'vegetables' => Vegetable::all(),
+            'registrationCode' => $registrationCode,
+            'accessToken' => $request->input('accessToken'),
         ]);
     }
 }
