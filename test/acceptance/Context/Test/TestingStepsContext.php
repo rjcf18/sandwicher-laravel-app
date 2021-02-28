@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 namespace AcceptanceTest\Context\Test;
 
+use AcceptanceTest\AcceptanceTestCase;
 use Behat\Behat\Context\Context;
-use function PHPUnit\Framework\assertEquals;
 
-class TestingStepsContext implements Context
+class TestingStepsContext extends AcceptanceTestCase implements Context
 {
     /**
      * @Given I have done something with :arg1
@@ -13,6 +13,6 @@ class TestingStepsContext implements Context
      */
     public function iHaveDoneSomethingWith(string $arg1): void
     {
-        assertEquals('test', $arg1);
+        $this->assertEquals('test', $arg1);
     }
 }
