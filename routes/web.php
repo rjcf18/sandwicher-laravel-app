@@ -48,6 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], func
 Route::group(['prefix' => 'meals', 'middleware' => ['auth.consumer']], function () {
     Route::get('/{registrationCode}', [MealController::class, 'dashboard'])->name('meals.registration.dashboard');
     Route::post('/{registrationCode}', [OrderController::class, 'store'])->name('meals.register.order');
-    Route::patch('/{registrationCode}', [OrderController::class, 'update'])->name('meals.update.order');
+    Route::put('/{registrationCode}', [OrderController::class, 'update'])->name('meals.update.order');
 });
 

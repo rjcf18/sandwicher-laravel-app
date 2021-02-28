@@ -36,7 +36,7 @@ class OrderController extends Controller
         $order->setAttribute('vegetable_id', (int) $request->input('vegetable'));
         $order->setAttribute('sauce_id', (int) $request->input('sauce'));
         $order->setAttribute('oven_baked', (bool) $request->input('oven_baked'));
-        $order->save();
+        $order->push();
 
         return redirect()->back()->with('message','Meal order registered successfully.')->with('order', $order);
     }
@@ -53,14 +53,14 @@ class OrderController extends Controller
             $user->getAttribute('id')
         );
 
-        $order->setAttribute('bread_type_id', $request->input('bread_type'));
-        $order->setAttribute('bread_size_id', $request->input('bread_size'));
-        $order->setAttribute('taste_id', $request->input('taste'));
-        $order->setAttribute('extra_id', $request->input('extra'));
-        $order->setAttribute('vegetable_id', $request->input('vegetable'));
-        $order->setAttribute('sauce_id', $request->input('sauce'));
+        $order->setAttribute('bread_type_id', (int) $request->input('bread_type'));
+        $order->setAttribute('bread_size_id', (int) $request->input('bread_size'));
+        $order->setAttribute('taste_id', (int) $request->input('taste'));
+        $order->setAttribute('extra_id', (int) $request->input('extra'));
+        $order->setAttribute('vegetable_id', (int) $request->input('vegetable'));
+        $order->setAttribute('sauce_id', (int) $request->input('sauce'));
         $order->setAttribute('oven_baked', (bool) $request->input('oven_baked'));
-        $order->save();
+        $order->push();
 
         return redirect()->back()->with('message','Meal order updated successfully.');
     }

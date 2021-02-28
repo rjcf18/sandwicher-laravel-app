@@ -11,42 +11,42 @@ class Order extends Model
 
     public function meal()
     {
-        return $this->hasOne(Meal::class, 'id');
+        return $this->hasOne(Meal::class, 'id', 'meal_id');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function breadType()
     {
-        return $this->hasOne(BreadType::class, 'id');
+        return $this->hasOne(BreadType::class, 'id', 'bread_type_id');
     }
 
     public function breadSize()
     {
-        return $this->hasOne(BreadSize::class, 'id');
+        return $this->hasOne(BreadSize::class, 'id', 'bread_size_id');
     }
 
     public function taste()
     {
-        return $this->hasOne(Taste::class, 'id');
+        return $this->hasOne(Taste::class, 'id', 'taste_id');
     }
 
     public function extra()
     {
-        return $this->hasOne(Extra::class, 'id');
+        return $this->hasOne(Extra::class, 'id', 'extra_id');
     }
 
     public function vegetable()
     {
-        return $this->hasOne(Vegetable::class, 'id');
+        return $this->hasOne(Vegetable::class, 'id', 'vegetable_id');
     }
 
     public function sauce()
     {
-        return $this->hasOne(Sauce::class, 'id');
+        return $this->hasOne(Sauce::class, 'id', 'sauce_id');
     }
 
     public static function orderExistsForMealAndUser(int $mealId, int $userId): bool

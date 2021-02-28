@@ -3,6 +3,7 @@
 @section('content')
 
 @include('meals.registration.register')
+@include('meals.registration.edit')
 
 <div class="container">
     <div class="row">
@@ -21,7 +22,98 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Meals Registration Dashboard') }}</div>
+                <div class="card-header">{{ __('Current Meal Order') }}</div>
+                <div class="card-body">
+
+                    @if (isset($mealOrder))
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Bread Type</strong>
+                                    {{ $mealOrder->breadType->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Bread Size</strong>
+                                    {{ $mealOrder->breadSize->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Taste</strong>
+                                    {{ $mealOrder->taste->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Extra</strong>
+                                    {{ $mealOrder->extra->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Vegetable</strong>
+                                    {{ $mealOrder->vegetable->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Sauce</strong>
+                                    {{ $mealOrder->sauce->name }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <div class="form-group">
+                                    <strong>Oven Baked</strong>
+                                    {{ $mealOrder->oven_baked ? 'Yes' : 'No' }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-small btn-success"
+                                   data-toggle="modal"
+                                   data-target="#mealOrderEditModal">{{ __('Edit Order') }}
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ __('No order was placed yet for this meal.') }}
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-small btn-success"
+                                   data-toggle="modal"
+                                   data-target="#mealOrderRegisterModal">{{ __('Register Order') }}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Meal Orders History') }}</div>
 
                 <div class="card-body">
 
@@ -57,19 +149,12 @@
 
                             </table>
                         </div>
+
                     @else
                         {{ __('There are no orders yet') }}
                     @endif
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-small btn-success"
-               data-toggle="modal"
-               data-target="#mealOrderRegisterModal">{{ __('Register Order') }}
-            </a>
         </div>
     </div>
 </div>
