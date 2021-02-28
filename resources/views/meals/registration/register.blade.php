@@ -17,9 +17,9 @@
 
                         <div class="col-md-6">
 
-                            <select class="form-control selectpicker" id="bread_type" name="bread_type" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="bread_type" name="bread_type" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($breadTypes as $breadType)
                                     <option value="{{ $breadType->id }}">{{ $breadType->name }}</option>
                                 @endforeach
@@ -31,9 +31,9 @@
                         <label for="bread_size" class="col-md-4 col-form-label text-md-right">{{ __('Bread Size') }}</label>
 
                         <div class="col-md-6">
-                            <select class="form-control selectpicker" id="bread_size" name="bread_size" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="bread_size" name="bread_size" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($breadSizes as $breadSize)
                                     <option value="{{ $breadSize->id }}">{{ $breadSize->name }}</option>
                                 @endforeach
@@ -45,9 +45,9 @@
                         <label for="taste" class="col-md-4 col-form-label text-md-right">{{ __('Taste') }}</label>
 
                         <div class="col-md-6">
-                            <select class="form-control selectpicker" id="taste" name="taste" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="taste" name="taste" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($tastes as $taste)
                                     <option value="{{ $taste->id }}">{{ $taste->name }}</option>
                                 @endforeach
@@ -59,9 +59,9 @@
                         <label for="extra" class="col-md-4 col-form-label text-md-right">{{ __('Extra') }}</label>
 
                         <div class="col-md-6">
-                            <select class="form-control selectpicker" id="extra" name="extra" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="extra" name="extra" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($extras as $extra)
                                     <option value="{{ $extra->id }}">{{ $extra->name }}</option>
                                 @endforeach
@@ -73,9 +73,9 @@
                         <label for="vegetable" class="col-md-4 col-form-label text-md-right">{{ __('Vegetable') }}</label>
 
                         <div class="col-md-6">
-                            <select class="form-control selectpicker" id="vegetable" name="vegetable" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="vegetable" name="vegetable" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($vegetables as $vegetable)
                                     <option value="{{ $vegetable->id }}">{{ $vegetable->name }}</option>
                                 @endforeach
@@ -87,9 +87,9 @@
                         <label for="sauce" class="col-md-4 col-form-label text-md-right">{{ __('Sauce') }}</label>
 
                         <div class="col-md-6">
-                            <select class="form-control selectpicker" id="sauce" name="sauce" form="meal-order-register-form">
+                            <select class="form-control selectpicker" id="sauce" name="sauce" form="meal-order-register-form" required>
 
-                                <option value="0" disabled selected> Select an option</option>
+                                <option value="" disabled selected> Select an option</option>
                                 @foreach ($sauces as $sauce)
                                     <option value="{{ $sauce->id }}">{{ $sauce->name }}</option>
                                 @endforeach
@@ -102,7 +102,7 @@
 
                         <div class="col-md-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="oven_baked" id="oven_baked" {{ old('oven_baked') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="oven_baked" id="oven_baked" {{ old('oven_baked') ? 'checked' : '' }} required>
                             </div>
                         </div>
                     </div>
