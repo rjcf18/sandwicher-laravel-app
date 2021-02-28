@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
-namespace UnitTest;
+namespace Test\UnitTest;
 
-use PHPUnit\Framework\TestCase;
+use Test\TestCase;
 
 class Test extends TestCase
 {

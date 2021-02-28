@@ -4,4 +4,4 @@ default:
       paths:
         - 'test/acceptance/Feature/Test'
       contexts:
-        - AcceptanceTest\Context\Test\TestingStepsContext
+        - Test\AcceptanceTest\Context\Test\TestingStepsContext

@@ -51,8 +51,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AcceptanceTest\\": "test/acceptance/",
-            "UnitTest\\": "test/unit/"
+            "Test\\": "test/",
+            "Test\\AcceptanceTest\\": "test/acceptance/",
+            "Test\\UnitTest\\": "test/unit/"
         }
     },
     "scripts": {

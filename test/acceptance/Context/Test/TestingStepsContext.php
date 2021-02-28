@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
-namespace AcceptanceTest\Context\Test;
+namespace Test\AcceptanceTest\Context\Test;
 
-use AcceptanceTest\AcceptanceTestCase;
 use Behat\Behat\Context\Context;
+use Test\TestCase;
 
-class TestingStepsContext extends AcceptanceTestCase implements Context
+class TestingStepsContext extends TestCase implements Context
 {
     /**
      * @Given I have done something with :arg1
