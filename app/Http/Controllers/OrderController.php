@@ -20,8 +20,6 @@ class OrderController extends Controller
             'sauce_id' => 'required',
             'oven_baked' => 'required',
         ]);
-//        return redirect()->back()
-//            ->with('message', json_encode($request->all()));
 
         /** @var User $user */
         $user = $request->user();
