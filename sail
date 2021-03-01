@@ -72,8 +72,34 @@ if [ $# -gt 0 ]; then
         source ./.env
     fi
 
+    # Setup the project by running all necessary commands to do so...
+    if [ "$1" == "setup-project" ]; then
+        docker-compose up -d
+
+        docker-compose exec \
+            -u sail \
+            "$APP_SERVICE" \
+            composer install
+
+        docker-compose exec \
+            -u sail \
+            "$APP_SERVICE" \
+            npm install
+
+        docker-compose exec \
+            -u sail \
+            "$APP_SERVICE" \
+            npm run dev
+
+        docker-compose exec \
+            -u sail \
+            "$APP_SERVICE" \
+            php artisan migrate
+
+        echo -e "${WHITE}The project was successfully configured.${NC}" >&2
+
     # Proxy PHP commands to the "php" binary on the application container...
-    if [ "$1" == "php" ]; then
+    elif [ "$1" == "php" ]; then
         shift 1
 
         if [ "$EXEC" == "yes" ]; then

@@ -68,8 +68,8 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi"
         ],
         "test": [
             "@unitTest",
