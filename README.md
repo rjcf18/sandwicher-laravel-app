@@ -15,6 +15,7 @@
     * [Architecture](#architecture)
     * [Composer](#composer)
     * [CI/CD](#cicd)
+* [Next Steps](#next-steps)
 
 ## Summary
 A proof of concept project to apply some engineering and development concepts.
@@ -77,3 +78,12 @@ The project is integrated with CircleCI to run our tests pipeline (link above).
 
 Currently it is only running the tests but as next steps, a release should be automatically created in the repository with the code after passing all tests to avoid doing this process manually
 
+## Next steps
+
+- Currently the application is very "Laravel oriented" and still needs some refactoring and improvements.
+- Like mentioned previously the next steps to improve this application would be the following:
+    - Build acceptance tests for the application in order to have all flows covered and written with business readable steps using [Gherkin](https://cucumber.io/docs/gherkin/reference/) language (project is already setup with a base [Behat](https://docs.behat.org/en/latest/) structure for building these acceptance tests)
+    - Decouple framework from the application domain (The domain development is already underway [here](https://github.com/rjcf18/sandwicher-domain))
+    - After finishing the domain development, use the latest version of the domain in the application to avoid having business logic coupled with the application and frameworks/tools
+    - Automate github repository release creation process in CircleCI so that each time the pipeline runs and all the tests pass a new release is generated automatically
+    - Decouple frontend from backend by having a completely independent frontend that communicates with a backend API that provides the necessary functionality and data to the frontend
