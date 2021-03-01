@@ -25,11 +25,11 @@ This project consists in a simple app that will make any sandwich lover's live e
 
 - In order to setup/run the project it is required only to have [docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) and [docker compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04) installed
 - Laravel Sail script was included in the project to handle the docker environment and the execution of commands inside the containers so it will be you best friend to run anything inside the containers.
-- Before running any other commands you need to configure your `.env` file. Go to the project root and run `cp .env.example .env`.
+- The `.env` file should be automatically generated when you run the `./sail` command to setup the docker environment but if you want to do it manually go to the project root and run `cp .env.example .env`. I you don't do it manually, the default `.env` file will be automatically generated at some point from the .env-example one so no problem here.
 - To run any command simply run `./sail <command_you_want_to_run>`. To get the project started run `./sail up -d`. This will setup the docker environment and put all containers running.
 - Run `./sail composer install` to install all our PHP dependencies
 - Run `./sail npm install && ./sail npm run dev` (`./sail npm run prod` for production) to install our Node.js dependencies for the frontend 
-- By now your `.env` file was already generated, simply fill the env variables for the database name and credentials according to your liking
+- By now your `.env` file was already generated previously, if you wish to do any change just simply fill the env variables you wish to change like the database name and credentials for example (which are predefined) and then restart your docker environment `./sail down -v && ./sail build --no-cache && ./sail up -d`
 - Finally, in order to have the application fully configured you will need to run `./sail artisan migrate`, which will run all database migrations.
 - And that is all. You should be all setup now.
 - In order to run all the application tests (`unit` and `acceptance`) run `./sail composer test`

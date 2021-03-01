@@ -66,6 +66,10 @@ if [ $# -gt 0 ]; then
     # Source the ".env" file so Laravel's environment variables are available...
     if [ -f ./.env ]; then
         source ./.env
+    else
+        cp .env.example .env
+
+        source ./.env
     fi
 
     # Proxy PHP commands to the "php" binary on the application container...
