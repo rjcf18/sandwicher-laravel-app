@@ -1,39 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-4">
 
-    <h2>Consumer Details</h2>
+    <h2>User Details</h2>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Id:</strong>
-                {{ $consumer->id }}
+                {{ $user->id }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {{ $consumer->name }}
+                {{ $user->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {{ $consumer->email }}
+                {{ $user->email }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Access Token:</strong>
-                {{ $consumer->access_token }}
+                {{ $user->access_token }}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <a class="btn btn-primary" href="{{ route('consumers.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
         </div>
     </div>
 </div>

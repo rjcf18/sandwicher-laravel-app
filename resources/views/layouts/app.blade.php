@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     {{ config('app.name', 'Sandwicher') }}
                 </a>
             </div>
@@ -38,15 +38,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            @if (Auth::user()->getAttribute('is_admin'))
+                            @if (Auth::user() && Auth::user()->getAttribute('is_admin'))
+                                <li class="nav-item">
+
+                                    <a id="consumersDropdown" class="nav-link" href="{{ route('admin.dashboard') }}">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+
                                 <li class="nav-item dropdown">
+
                                     <a id="consumersDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Consumers
+                                        Consumer Users
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="consumersDropdown">
-                                        <a class="dropdown-item" href="{{ URL::to('admin/consumers') }}">List</a>
-                                        <a class="dropdown-item" href="{{ URL::to('admin/consumers/create') }}">Create</a>
+                                        <a class="dropdown-item" href="{{ route('users.index') }}">List</a>
+                                        <a class="dropdown-item" href="{{ route('users.create') }}">Create</a>
                                     </div>
                                 </li>
 
@@ -56,7 +65,7 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="mealsDropdown">
-                                        <a class="dropdown-item" href="{{ URL::to('admin/meals') }}">List</a>
+                                        <a class="dropdown-item" href="{{ route('meals.index') }}">List</a>
                                         <form action="{{ route('meals.store') }}" method="POST">
                                             @csrf
 
@@ -113,7 +122,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

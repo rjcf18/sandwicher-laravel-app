@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -41,13 +42,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin(): bool
+    {
+        return (bool) $this->getAttribute('is_admin');
+    }
+
     public static function userWithEmailExists(string $email): bool
     {
-        return (bool) static::query()->where('email', '=', $email)->exists();
+        return static::query()->where('email', '=', $email)->exists();
     }
 
     public static function accessTokenMatches(string $accessToken): bool
     {
-        return (bool) static::query()->where('access_token', '=', $accessToken)->exists();
+        return static::query()->where('access_token', '=', $accessToken)->exists();
+    }
+
+    /**
+     * @param string $accessToken
+     *
+     * @return User|Model
+     */
+    public static function getByAccessToken(string $accessToken): ?User
+    {
+        return static::query()->where('access_token', '=', $accessToken)->first();
     }
 }

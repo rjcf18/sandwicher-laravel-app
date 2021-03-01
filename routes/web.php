@@ -4,6 +4,7 @@ use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,20 +20,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::group(['prefix' => 'consumers'], function() {
-        Route::get('/', [ConsumerController::class, 'index'])->name('consumers.index');
-        Route::post('/', [ConsumerController::class, 'store'])->name('consumers.store');
-        Route::get('/create', [ConsumerController::class, 'create'])->name('consumers.create');
-        Route::get('/{consumer}', [ConsumerController::class, 'show'])->name('consumers.show');
-        Route::delete('/{consumer}', [ConsumerController::class, 'destroy'])->name('consumers.destroy');
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
     Route::group(['prefix' => 'meals'], function() {

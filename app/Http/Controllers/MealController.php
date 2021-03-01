@@ -73,10 +73,11 @@ class MealController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
-        $meal = Meal::getOpenMeal();
+        $meal = Meal::getByRegistrationCode($registrationCode);
 
         return view('meals.registration.dashboard', [
             'orders' => Order::getAllByUserId($user->getAttribute('id')),
+            'meal' => $meal,
             'mealOrder' => Order::getByMealAndUser($meal->getAttribute('id'), $user->getAttribute('id')),
             'breadSizes' => BreadSize::all(),
             'breadTypes' => BreadType::all(),

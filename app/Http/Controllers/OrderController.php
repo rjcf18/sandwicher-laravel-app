@@ -16,6 +16,11 @@ class OrderController extends Controller
 
         $meal = Meal::getMealByRegistrationCode($registrationCode);
 
+        if ($meal->getAttribute('status') == 0) {
+            return redirect()->back()
+                ->with('message','Meal registration not possible. The meal was already closed.');
+        }
+
         $orderExistsForMeal = Order::orderExistsForMealAndUser(
             $meal->getAttribute('id'),
             $user->getAttribute('id')

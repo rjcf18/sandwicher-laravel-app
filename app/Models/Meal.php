@@ -28,6 +28,16 @@ class Meal extends Model
     }
 
     /**
+     * @param string $registrationCode
+     *
+     * @return Meal|Model
+     */
+    public static function getByRegistrationCode(string $registrationCode): ?Meal
+    {
+        return static::query()->where('registration_code', '=', $registrationCode)->first();
+    }
+
+    /**
      * @param string $mealRegistrationCode
      *
      * @return Meal|Model

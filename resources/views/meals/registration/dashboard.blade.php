@@ -5,7 +5,7 @@
 @include('meals.registration.register')
 @include('meals.registration.edit')
 
-<div class="container">
+<div class="container py-4">
     <div class="row">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -20,7 +20,16 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">{{ __('Meal Registration Status') }}</div>
+                <div class="card-body">
+                    {{ $meal->status ? 'Open' : 'Closed' }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Current Meal Order') }}</div>
                 <div class="card-body">
@@ -77,14 +86,16 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a class="btn btn-small btn-success"
-                                   data-toggle="modal"
-                                   data-target="#mealOrderEditModal">{{ __('Edit Order') }}
-                                </a>
+                        @if ($mealOrder->meal->status === 1)
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-small btn-success"
+                                       data-toggle="modal"
+                                       data-target="#mealOrderEditModal">{{ __('Edit Order') }}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @else
                         <div class="row">
                             <div class="col-md-12">
@@ -113,7 +124,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Meal Orders History') }}</div>
+                <div class="card-header">{{ __('Your Orders History') }}</div>
 
                 <div class="card-body">
 

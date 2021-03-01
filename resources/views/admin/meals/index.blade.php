@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container py-4">
 
     <!-- will be used to show any messages -->
     @if (Session::has('message'))

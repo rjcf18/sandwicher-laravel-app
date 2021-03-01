@@ -11,11 +11,20 @@ class VerifyConsumerAccess
 {
     public function handle(Request $request, Closure $next)
     {
+        /** @var ?User $user */
+        $user = Auth::user();
+
+        if ($user && $user->isAdmin()) {
+            Auth::login($user);
+
+            return $next($request);
+        }
+
         $token = $request->query('accessToken');
 
         if (empty($token)) {
             return redirect('/')
-                ->with('message','Access denied to register order for the meal. Token is missing.');
+                ->with('message','Access denied to register order for the meal. Token is missing. (' . $request->getUri() . '?accessToken={yourToken}');
         }
 
         if (!User::accessTokenMatches($token)) {
@@ -24,7 +33,7 @@ class VerifyConsumerAccess
         }
 
         /** @var User $user */
-        $user = User::query()->where('access_token', '=', $token)->first();
+        $user = User::getByAccessToken($token);
 
         if (!$user->getAttribute('is_admin') && User::accessTokenMatches($token)) {
             Auth::login($user);
