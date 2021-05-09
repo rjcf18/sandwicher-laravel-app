@@ -13,12 +13,8 @@ jobs:
       - checkout
 
       - run:
-          name: Setup docker environment
-          command: ./sail up -d
-
-      - run:
-          name: Setup dependencies
-          command: ./sail composer install -n --prefer-dist
+          name: Setup project
+          command: ./sail setup-project
 
       - run:
           name: Run Tests
