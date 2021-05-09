@@ -11,14 +11,18 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo docker-php-ext-install pdo pdo_mysql
+
+      - run:
+          name: Setup docker environment
+          command: ./sail up -d
+
       - run:
           name: Setup dependencies
-          command: composer install -n --prefer-dist
+          command: ./sail composer install -n --prefer-dist
 
       - run:
           name: Run Tests
-          command: composer test
+          command: ./sail composer test
 
       - store_test_results:
           path: test/reports
