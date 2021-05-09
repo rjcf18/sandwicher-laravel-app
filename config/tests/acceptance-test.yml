@@ -1,7 +1,8 @@
 default:
   suites:
-    test:
+    meal:
       paths:
-        - 'test/acceptance/Feature/Test'
+        - 'test/acceptance/Feature/Meal'
       contexts:
-        - Test\AcceptanceTest\Context\Test\TestingStepsContext
+        - Test\AcceptanceTest\Context\Meal\MealCreationStepsContext
+        - Test\AcceptanceTest\Context\User\UserStepsContext

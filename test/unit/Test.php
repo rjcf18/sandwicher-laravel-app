@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 namespace Test\UnitTest;
 
-use Test\TestCase;
+use Test\BaseTestCase;
 
-class Test extends TestCase
+class Test extends BaseTestCase
 {
     public function testTest(): void
     {

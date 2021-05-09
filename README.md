@@ -60,6 +60,12 @@ This project consists in a simple app that will make any sandwich lover's live e
 - The user must be able to edit his order (but only when the order/meal is still open).
 - The user should also be able to view his previous orders when he is “logged in” by his unique link.
 
+- Less priority / Optional
+    - Whenever the user needs to place a new order, his previous order will automatically be prefilled in the form
+    - On the unique link of the admin, the GPS location of the mobile phone of the “subway retrieving user” should be tracked and available on the unique links of all the users (on a Google map)
+    - Users should be able to rate their experience with a meal, so they can see if they should order the same meal again
+    - A button on the “admin mobile page” can be pressed to call ahead using MessageBird to the sandwich restaurant, that a big order is coming their way
+
 ## Tech specifics
 
 ### Architecture

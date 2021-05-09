@@ -61,6 +61,11 @@ class MealController extends Controller
     {
         $meal = Meal::getOpenMeal();
 
+        if (empty($meal)) {
+            return redirect()->route('meals.index')
+                ->with('message','There is no meal currently open for registration');
+        }
+
         $meal->setAttribute('eaten_at', new DateTimeImmutable());
         $meal->setAttribute('status', 0);
         $meal->save();
