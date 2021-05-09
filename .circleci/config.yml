@@ -8,8 +8,9 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:8.0.0
-
-      - image: circleci/mysql:5.7
+        environment:
+          DB_HOST: '127.0.0.1'
+      - image: circleci/mysql:8.0
         environment:
           MYSQL_ROOT_PASSWORD: 'sandwicher'
           MYSQL_DATABASE: 'sandwicher'
