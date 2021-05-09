@@ -8,17 +8,25 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:8.0.0
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: 'sandwicher'
+          MYSQL_DATABASE: 'sandwicher'
+          MYSQL_USER: 'sandwicher'
+          MYSQL_PASSWORD: 'sandwicher'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
     steps:
       - checkout
-
+      - run: sudo docker-php-ext-install mysql
+      - run: sudo apt-get install mysql-client
       - run:
-          name: Setup project
-          command: ./sail setup-project
+          name: Setup dependencies
+          command: composer install -n --prefer-dist
 
       - run:
           name: Run Tests
-          command: ./sail composer test
+          command: composer test
 
       - store_test_results:
           path: test/reports
