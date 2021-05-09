@@ -8,6 +8,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:8.0.0
+
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: 'sandwicher'
@@ -18,10 +19,30 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo docker-php-ext-install pdo pdo_mysql
+
+      - run:
+          name: Install MySQL driver
+          command: |
+            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+            sudo docker-php-ext-install zip bcmath pdo_mysql
+
+      # Download and cache dependencies
+
+      # composer cache
+      - restore_cache:
+          keys:
+            # "composer.json" can be used if "composer.json"
+            # is not committed to the repository.
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - composer-v1-
       - run:
           name: Setup dependencies
           command: composer install -n --prefer-dist
+      - save_cache:
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
 
       - run:
           name: Run Tests
