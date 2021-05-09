@@ -19,7 +19,6 @@ jobs:
     steps:
       - checkout
       - run: sudo docker-php-ext-install pdo pdo_mysql
-      - run: sudo apt-get install mysql-client
       - run:
           name: Setup dependencies
           command: composer install -n --prefer-dist
