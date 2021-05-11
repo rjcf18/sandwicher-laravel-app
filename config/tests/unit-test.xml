@@ -10,6 +10,18 @@
          processIsolation            = "false"
          stopOnFailure               = "false">
 
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">../../app</directory>
+        </include>
+        <exclude>
+            <directory suffix=".php">../../app/Console/</directory>
+            <directory suffix=".php">../../app/Providers/</directory>
+            <directory suffix=".php">../../app/Exceptions/</directory>
+            <file>../../app/Http/Kernel.php</file>
+        </exclude>
+    </coverage>
+
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>../../test/unit</directory>

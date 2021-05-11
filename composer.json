@@ -39,7 +39,8 @@
         "laravel/ui": "3.2.0",
         "mockery/mockery": "1.4.2",
         "nunomaduro/collision": "5.3.0",
-        "phpunit/phpunit": "9.5.0"
+        "phpunit/phpunit": "9.5.0",
+        "phpunit/php-code-coverage": "^9.2.6"
     },
     "autoload": {
         "psr-4": {
@@ -75,7 +76,7 @@
             "@unitTest",
             "@acceptanceTest"
         ],
-        "unitTest": "bin/phpunit --configuration config/tests/unit-test.xml --log-junit test/reports/unitReport.xml",
+        "unitTest": "XDEBUG_MODE=coverage bin/phpunit --configuration config/tests/unit-test.xml --log-junit test/reports/unitReport.xml --coverage-text --coverage-clover=test/reports/unitCoverage.xml",
         "acceptanceTest": "bin/behat --config config/tests/acceptance-test.yml -f pretty -o std -f junit --out test/reports"
     },
     "minimum-stability": "stable",
