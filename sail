@@ -19,9 +19,7 @@ if [ "$MACHINE" == "UNKNOWN" ]; then
 fi
 
 # Define environment variables...
-export APP_PORT=${APP_PORT:-80}
-export APP_SERVICE=${APP_SERVICE:-"laravel.test"}
-export DB_PORT=${DB_PORT:-3306}
+export APP_SERVICE=${APP_SERVICE:-"php-fpm"}
 export WWWUSER=${WWWUSER:-$UID}
 export WWWGROUP=${WWWGROUP:-$(id -g)}
 
@@ -63,7 +61,7 @@ function sail_is_not_running {
 }
 
 if [ $# -gt 0 ]; then
-    # Source the ".env" file so Laravel's environment variables are available...
+    # Source the ".env" file so that the environment variables are available...
     if [ -f ./.env ]; then
         source ./.env
     else
@@ -77,22 +75,22 @@ if [ $# -gt 0 ]; then
         docker-compose up -d
 
         docker-compose exec \
-            -u sail \
+            -u www-data \
             "$APP_SERVICE" \
             composer install
 
         docker-compose exec \
-            -u sail \
+            -u www-data \
             "$APP_SERVICE" \
             npm install
 
         docker-compose exec \
-            -u sail \
+            -u www-data \
             "$APP_SERVICE" \
             npm run dev
 
         docker-compose exec \
-            -u sail \
+            -u www-data \
             "$APP_SERVICE" \
             php artisan migrate
 
@@ -104,7 +102,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 php "$@"
         else
@@ -117,7 +115,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 composer "$@"
         else
@@ -130,52 +128,22 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 php artisan "$@"
         else
             sail_is_not_running
         fi
 
-    # Proxy the "test" command to the "php artisan test" Artisan command...
+    # Proxy the "test" command to run the composer test command...
     elif [ "$1" == "test" ]; then
         shift 1
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
-                php artisan test "$@"
-        else
-            sail_is_not_running
-        fi
-
-    # Proxy the "dusk" command to the "php artisan dusk" Artisan command...
-    elif [ "$1" == "dusk" ]; then
-        shift 1
-
-        if [ "$EXEC" == "yes" ]; then
-            docker-compose exec \
-                -u sail \
-                -e "APP_URL=http://laravel.test" \
-                -e "DUSK_DRIVER_URL=http://selenium:4444/wd/hub" \
-                "$APP_SERVICE" \
-                php artisan dusk "$@"
-        else
-            sail_is_not_running
-        fi
-
-    # Proxy the "dusk:fails" command to the "php artisan dusk:fails" Artisan command...
-    elif [ "$1" == "dusk:fails" ]; then
-        shift 1
-
-        if [ "$EXEC" == "yes" ]; then
-            docker-compose exec \
-                -u sail \
-                -e "APP_URL=http://laravel.test" \
-                -e "DUSK_DRIVER_URL=http://selenium:4444/wd/hub" \
-                "$APP_SERVICE" \
-                php artisan dusk:fails "$@"
+                composer test
         else
             sail_is_not_running
         fi
@@ -186,7 +154,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 php artisan tinker
         else
@@ -199,7 +167,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 node "$@"
         else
@@ -212,7 +180,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 npm "$@"
         else
@@ -225,7 +193,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 npx "$@"
         else
@@ -238,7 +206,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 yarn "$@"
         else
@@ -275,7 +243,7 @@ if [ $# -gt 0 ]; then
 
         if [ "$EXEC" == "yes" ]; then
             docker-compose exec \
-                -u sail \
+                -u www-data \
                 "$APP_SERVICE" \
                 bash
         else

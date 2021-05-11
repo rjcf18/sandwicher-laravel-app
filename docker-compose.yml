@@ -1,43 +1,61 @@
 version: '3'
 
 services:
-    laravel.test:
+    php-fpm:
         build:
-            context: docker/php/8.0
+            context: ./docker/php
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sandwicher-php8.0/app
-        container_name: sandwicher-app
-        ports:
-            - '${APP_PORT:-80}:80'
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
+                WWWUSER: '${WWWUSER}'
+        image: sandwicher/php-fpm
+        container_name: sandwicher-php
         volumes:
-            - '.:/var/www/html'
-        networks:
-            - sandwicher-network
+            - ./:/var/www
         depends_on:
             - mysql
+        ports:
+            - "9000"
+        networks:
+            - sandwicher-network
+
+    nginx:
+        build:
+            context: ./docker/nginx
+            dockerfile: Dockerfile
+        image: sandwicher/nginx
+        container_name: sandwicher-nginx
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./docker/nginx/sites/:/etc/nginx/sites-available
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+        depends_on:
+            - php-fpm
+        ports:
+            - '80:80'
+        networks:
+            - sandwicher-network
 
     mysql:
-        image: 'mysql:8.0'
-        container_name: sandwicher-database
-        ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+        build:
+            context: ./docker/database/mysql
+        image: sandwicher/mysql
+        container_name: sandwicher-mysql
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-sandwicher}'
             MYSQL_DATABASE: '${DB_DATABASE:-sandwicher}'
             MYSQL_USER: '${DB_USERNAME:-sandwicher}'
             MYSQL_PASSWORD: '${DB_PASSWORD:-sandwicher}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        ports:
+            - '3306:3306'
         volumes:
             - 'sandwicher-mysql:/var/lib/mysql'
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping" ]
         networks:
             - sandwicher-network
-        healthcheck:
-            test: ["CMD", "mysqladmin", "ping"]
 
 networks:
     sandwicher-network:

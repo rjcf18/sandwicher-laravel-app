@@ -36,7 +36,6 @@
         "behat/behat": "3.8.1",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "1.4.0",
         "laravel/ui": "3.2.0",
         "mockery/mockery": "1.4.2",
         "nunomaduro/collision": "5.3.0",
